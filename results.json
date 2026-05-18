@@ -1,0 +1,41 @@
+{
+	"file": "../sample_logs/game_session.log",
+	"total_entries": 10,
+	"issues": [
+		{
+			"severity": "CRITICAL",
+			"detector": "CrashDetector",
+			"description": "Crash detected: Unhandled exception: Access violation at 0x00FF2340"
+		},
+		{
+			"severity": "MEDIUM",
+			"detector": "PerformanceDetector",
+			"description": "Memory issue: Allocation spike: 256MB in 0.3s"
+		},
+		{
+			"severity": "HIGH",
+			"detector": "PerformanceDetector",
+			"description": "Severe frame spike: 48ms (target: 16ms)"
+		},
+		{
+			"severity": "CRITICAL",
+			"detector": "PerformanceDetector",
+			"description": "Memory issue: Out of memory: requested 512MB, available 128MB"
+		},
+		{
+			"severity": "MEDIUM",
+			"detector": "ErrorDetector",
+			"description": "Error in Rendering: Shader compilation failed: vertex_shadow.glsl"
+		},
+		{
+			"severity": "MEDIUM",
+			"detector": "ErrorDetector",
+			"description": "Error in Audio: Sound bank failed to load: explosions.bnk"
+		},
+		{
+			"severity": "HIGH",
+			"detector": "ErrorDetector",
+			"description": "Error in Memory: Out of memory: requested 512MB, available 128MB"
+		}
+	]
+}
