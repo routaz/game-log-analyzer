@@ -19,6 +19,7 @@ add_executable(analyzer
     src/console_reporter.cpp
     src/json_reporter.cpp
     src/html_reporter.cpp
+    src/unity_log_parser.cpp
 )
 
 # --- GoogleTest ---
@@ -49,6 +50,7 @@ add_executable(tests
     src/console_reporter.cpp
     src/json_reporter.cpp
     src/html_reporter.cpp
+    src/unity_log_parser.cpp
 )
 
 target_link_libraries(tests GTest::gtest_main)
