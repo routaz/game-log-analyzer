@@ -14,6 +14,7 @@ Built with a clean, SOLID architecture: abstract interfaces for detectors and re
 - **Report Generation** — Pluggable reporter system:
   - `ConsoleReporter` — Formatted terminal output
   - `JsonReporter` — Machine-readable JSON reports
+  - `HtmlReporter` — Color-coded HTML reports with severity badges
 
 ## Architecture
 
@@ -68,6 +69,9 @@ cd build
 
 # JSON report
 ./analyzer --file path/to/game.log --format json --output report.json
+
+# HTML report
+./analyzer --file path/to/game.log --format html --output report.html
 
 # Help
 ./analyzer --help

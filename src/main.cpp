@@ -8,6 +8,7 @@
 #include "game_log_analyzer/error_detector.h"
 #include "game_log_analyzer/console_reporter.h"
 #include "game_log_analyzer/json_reporter.h"
+#include "game_log_analyzer/html_reporter.h"
 
 void print_usage() {
     std::cout << "Usage: analyzer --file <log_file> [--format <console|json>] [--output <file>]" << std::endl;
@@ -23,7 +24,6 @@ int main(int argc, char* argv[]) {
     std::string format = "console";
     std::string output_path = "report.json";
 
-    // Parse command line arguments
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
 
@@ -50,7 +50,6 @@ int main(int argc, char* argv[]) {
 
     std::cout << "GameLogAnalyzer v0.1.0\n" << std::endl;
 
-    // Parse the log file
     game_log_analyzer::LogParser parser;
     std::vector<game_log_analyzer::LogEntry> entries;
 
@@ -63,7 +62,6 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Parsed " << entries.size() << " log entries.\n" << std::endl;
 
-    // Set up the analyzer
     game_log_analyzer::Analyzer analyzer;
     analyzer.add_detector(std::make_unique<game_log_analyzer::CrashDetector>());
     analyzer.add_detector(std::make_unique<game_log_analyzer::PerformanceDetector>());
@@ -71,11 +69,14 @@ int main(int argc, char* argv[]) {
 
     auto report = analyzer.analyze(entries, file_path);
 
-    // Generate report
     if (format == "json") {
-        game_log_analyzer::JsonReporter reporter(output_path);
+    game_log_analyzer::JsonReporter reporter(output_path);
+    reporter.generate(report);
+    std::cout << "JSON report saved to " << output_path << std::endl;
+    } else if (format == "html") {
+        game_log_analyzer::HtmlReporter reporter(output_path);
         reporter.generate(report);
-        std::cout << "JSON report saved to " << output_path << std::endl;
+        std::cout << "HTML report saved to " << output_path << std::endl;
     } else {
         game_log_analyzer::ConsoleReporter reporter;
         reporter.generate(report);
